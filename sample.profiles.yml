@@ -1,0 +1,16 @@
+# ~/.dbt/profiles.yml
+
+my-databricks:
+  outputs:
+    dev:
+      type: spark
+      method: http
+      schema: dev_[yourname]
+      host: [hostname]
+      port: 443
+      token: [token]
+      cluster: [cluster_id]
+      connect_timeout: 30
+      connect_retries: 15
+      threads: 5
+  target: dev

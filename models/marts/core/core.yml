@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: One record per registered customer. Note that not all customers have placed orders
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: lifetime_value
+        description: Total amount (in USD) the customer has spent in the store.
+
+  - name: fct_orders
+    description: One record per order
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: "{{ doc('order_status') }}"
+        tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+      - name: amount
+        description: Amount in dollars
