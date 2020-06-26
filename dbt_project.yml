@@ -15,3 +15,18 @@ target-path: "target"
 clean-targets:
     - "target"
     - "dbt_modules"
+
+vars:
+  'snowplow:timezone': 'America/New_York'
+  'snowplow:page_ping_frequency': 10
+  'snowplow:events': "snowplow.event_tsv"
+  'snowplow:context:web_page': "snowplow.web_page_context_tsv"
+  'snowplow:context:performance_timing': false
+  'snowplow:context:useragent': false
+  'snowplow:pass_through_columns': []
+  'snowplow:page_view_lookback_days': 1
+  
+models:
+  snowplow:
+    +file_format: delta
+    +incremental_strategy: merge

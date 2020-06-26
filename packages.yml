@@ -1,0 +1,3 @@
+packages:
+  - git: https://github.com/fishtown-analytics/snowplow.git
+    revision: feature/spark-support
