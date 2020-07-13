@@ -11,9 +11,9 @@ Create Databricks tables `jaffle_shop.orders`, `jaffle_shop.customers`,
 and `stripe.payments` from these CSV files, which are located in a public S3 bucket ([docs](https://docs.databricks.com/data/tables.html#create-a-table-using-the-ui)):
 
 ```
-s3://dbt-tutorial-test/orders.csv
-s3://dbt-tutorial-test/customers.csv
-s3://dbt-tutorial-test/stripe_payments.csv
+s3://dbt-tutorial-public/jaffle_shop_orders.csv
+s3://dbt-tutorial-public/jaffle_shop_customers.csv
+s3://dbt-tutorial-public/stripe_payments.csv
 ```
 
 ## Getting started
