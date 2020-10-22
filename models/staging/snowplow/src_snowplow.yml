@@ -1,0 +1,275 @@
+version: 2
+
+sources:
+  - name: snowplow
+    loader: kinesis
+    loaded_at_field: approximateArrivalTimestamp
+    freshness:
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 24, period: hour }
+
+    tables:
+      - name: event
+        columns:
+          - name: app_id
+            data_type: varchar(255)
+          - name: platform
+            data_type: varchar(255)
+          - name: etl_tstamp
+            data_type: timestamp
+          - name: collector_tstamp
+            data_type: timestamp
+          - name: dvce_created_tstamp
+            data_type: timestamp
+          - name: event
+            data_type: varchar(128)
+          - name: event_id
+            data_type: char(36)
+          - name: txn_id
+            data_type: int
+          - name: name_tracker
+            data_type: varchar(128)
+          - name: v_tracker
+            data_type: varchar(100)
+          - name: v_collector
+            data_type: varchar(100)
+          - name: v_etl
+            data_type: varchar(100)
+          - name: user_id
+            data_type: varchar(255)
+          - name: user_ipaddress
+            data_type: varchar(45)
+          - name: user_fingerprint
+            data_type: varchar(50)
+          - name: domain_userid
+            data_type: varchar(36)
+          - name: domain_sessionidx
+            data_type: int
+          - name: network_userid
+            data_type: varchar(38)
+          - name: geo_country
+            data_type: char(2)
+          - name: geo_region
+            data_type: char(2)
+          - name: geo_city
+            data_type: varchar(75)
+          - name: geo_zipcode
+            data_type: varchar(15)
+          - name: geo_latitude
+            data_type: double
+          - name: geo_longitude
+            data_type: double
+          - name: geo_region_name
+            data_type: varchar(100)
+          - name: ip_isp
+            data_type: varchar(100)
+          - name: ip_organization
+            data_type: varchar(100)
+          - name: ip_domain
+            data_type: varchar(100)
+          - name: ip_netspeed
+            data_type: varchar(100)
+          - name: page_url
+            data_type: varchar(4096)
+          - name: page_title
+            data_type: varchar(2000)
+          - name: page_referrer
+            data_type: varchar(4096)
+          - name: page_urlscheme
+            data_type: varchar(16)
+          - name: page_urlhost
+            data_type: varchar(255)
+          - name: page_urlport
+            data_type: int
+          - name: page_urlpath
+            data_type: varchar(3000)
+          - name: page_urlquery
+            data_type: varchar(6000)
+          - name: page_urlfragment
+            data_type: varchar(3000)
+          - name: refr_urlscheme
+            data_type: varchar(16)
+          - name: refr_urlhost
+            data_type: varchar(255)
+          - name: refr_urlport
+            data_type: int
+          - name: refr_urlpath
+            data_type: varchar(6000)
+          - name: refr_urlquery
+            data_type: varchar(6000)
+          - name: refr_urlfragment
+            data_type: varchar(3000)
+          - name: refr_medium
+            data_type: varchar(25)
+          - name: refr_source
+            data_type: varchar(50)
+          - name: refr_term
+            data_type: varchar(255)
+          - name: mkt_medium
+            data_type: varchar(255)
+          - name: mkt_source
+            data_type: varchar(255)
+          - name: mkt_term
+            data_type: varchar(255)
+          - name: mkt_content
+            data_type: varchar(500)
+          - name: mkt_campaign
+            data_type: varchar(255)
+          - name: contexts
+            data_type: varchar(65000)
+          - name: se_category
+            data_type: varchar(1000)
+          - name: se_action
+            data_type: varchar(1000)
+          - name: se_label
+            data_type: varchar(1000)
+          - name: se_property
+            data_type: varchar(1000)
+          - name: se_value
+            data_type: double
+          - name: unstruct_event
+            data_type: varchar(65000)
+          - name: tr_orderid
+            data_type: varchar(255)
+          - name: tr_affiliation
+            data_type: varchar(255)
+          - name: tr_total
+            data_type: double
+          - name: tr_tax
+            data_type: double
+          - name: tr_shipping
+            data_type: double
+          - name: tr_city
+            data_type: varchar(255)
+          - name: tr_state
+            data_type: varchar(255)
+          - name: tr_country
+            data_type: varchar(255)
+          - name: ti_orderid
+            data_type: varchar(255)
+          - name: ti_sku
+            data_type: varchar(255)
+          - name: ti_name
+            data_type: varchar(255)
+          - name: ti_category
+            data_type: varchar(255)
+          - name: ti_price
+            data_type: double
+          - name: ti_quantity
+            data_type: int
+          - name: pp_xoffset_min
+            data_type: int
+          - name: pp_xoffset_max
+            data_type: int
+          - name: pp_yoffset_min
+            data_type: int
+          - name: pp_yoffset_max
+            data_type: int
+          - name: useragent
+            data_type: varchar(1000)
+          - name: br_name
+            data_type: varchar(50)
+          - name: br_family
+            data_type: varchar(50)
+          - name: br_version
+            data_type: varchar(50)
+          - name: br_type
+            data_type: varchar(50)
+          - name: br_renderengine
+            data_type: varchar(50)
+          - name: br_lang
+            data_type: varchar(255)
+          - name: br_features_pdf
+            data_type: boolean
+          - name: br_features_flash
+            data_type: boolean
+          - name: br_features_java
+            data_type: boolean
+          - name: br_features_director
+            data_type: boolean
+          - name: br_features_quicktime
+            data_type: boolean
+          - name: br_features_realplayer
+            data_type: boolean
+          - name: br_features_windowsmedia
+            data_type: boolean
+          - name: br_features_gears
+            data_type: boolean
+          - name: br_features_silverlight
+            data_type: boolean
+          - name: br_cookies
+            data_type: boolean
+          - name: br_colordepth
+            data_type: varchar(12)
+          - name: br_viewwidth
+            data_type: int
+          - name: br_viewheight
+            data_type: int
+          - name: os_name
+            data_type: varchar(50)
+          - name: os_family
+            data_type: varchar(50)
+          - name: os_manufacturer
+            data_type: varchar(50)
+          - name: os_timezone
+            data_type: varchar(255)
+          - name: dvce_type
+            data_type: varchar(50)
+          - name: dvce_ismobile
+            data_type: boolean
+          - name: dvce_screenwidth
+            data_type: int
+          - name: dvce_screenheight
+            data_type: int
+          - name: doc_charset
+            data_type: varchar(128)
+          - name: doc_width
+            data_type: int
+          - name: doc_height
+            data_type: int
+          - name: tr_currency
+            data_type: char(3)
+          - name: tr_total_base
+            data_type: double
+          - name: tr_tax_base
+            data_type: double
+          - name: tr_shipping_base
+            data_type: double
+          - name: ti_currency
+            data_type: char(3)
+          - name: ti_price_base
+            data_type: double
+          - name: base_currency
+            data_type: char(3)
+          - name: geo_timezone
+            data_type: varchar(64)
+          - name: mkt_clickid
+            data_type: varchar(128)
+          - name: mkt_network
+            data_type: varchar(64)
+          - name: etl_tags
+            data_type: varchar(500)
+          - name: dvce_sent_tstamp
+            data_type: timestamp
+          - name: refr_domain_userid
+            data_type: varchar(36)
+          - name: refr_dvce_tstamp
+            data_type: timestamp
+          - name: derived_contexts
+            data_type: varchar(65000)
+          - name: domain_sessionid
+            data_type: char(36)
+          - name: derived_tstamp
+            data_type: varchar(32)
+          - name: event_vendor
+            data_type: varchar(1000)
+          - name: event_name
+            data_type: varchar(1000)
+          - name: event_format
+            data_type: varchar(128)
+          - name: event_version
+            data_type: varchar(128)
+          - name: event_fingerprint
+            data_type: varchar(128)
+          - name: true_tstamp
+            data_type: varchar(32)

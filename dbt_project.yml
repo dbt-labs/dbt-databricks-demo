@@ -1,7 +1,7 @@
-name: 'jaffle_shop'
+name: 'dbt_databricks_demo'
 version: '1.0.0'
 config-version: 2
-require-dbt-version: [">=0.17.0"]
+require-dbt-version: [">=0.18.0"]
 
 profile: 'my-databricks'
 
@@ -17,16 +17,22 @@ clean-targets:
     - "dbt_modules"
 
 vars:
+  dbt_utils_dispatch_list: ['spark_utils']
+  snowplow_dispatch_list: ['spark_utils']
   'snowplow:timezone': 'America/New_York'
   'snowplow:page_ping_frequency': 10
-  'snowplow:events': "snowplow.event_tsv"
-  'snowplow:context:web_page': "snowplow.web_page_context_tsv"
+  'snowplow:events': "{{ ref('stg_snowplow_events') }}"
+  'snowplow:context:web_page': false
   'snowplow:context:performance_timing': false
   'snowplow:context:useragent': false
   'snowplow:pass_through_columns': []
   'snowplow:page_view_lookback_days': 1
   
 models:
+  +file_format: delta
+  +incremental_strategy: merge
   snowplow:
-    +file_format: delta
-    +incremental_strategy: merge
+    page_views:
+      default:
+        snowplow_web_page_context:
+          +enabled: false
