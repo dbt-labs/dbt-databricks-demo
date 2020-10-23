@@ -5,8 +5,8 @@ sources:
     loader: kinesis
     loaded_at_field: approximateArrivalTimestamp
     freshness:
-      warn_after: {count: 12, period: hour}
-      error_after: {count: 24, period: hour }
+      warn_after: {count: 1, period: minute}
+      error_after: {count: 5, period: minute}
 
     tables:
       - name: event
